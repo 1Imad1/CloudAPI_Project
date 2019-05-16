@@ -1,6 +1,6 @@
 # CloudAPI_Project
 
-# CheroesApp
+# Heroes&Villains
 
 A school project
 
