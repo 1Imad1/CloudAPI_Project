@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title slot="start">List</ion-title>
+
+    <ion-toolbar>
+      <ion-searchbar [(ngModel)]="search" (ionChange)="Searching(search)" placeholder="Search your Hero or Villain"></ion-searchbar>
+    </ion-toolbar>
+  </ion-toolbar>
+</ion-header>
+  
+<ion-content>
+  <div *ngIf="result">
+    <ion-card class="card" *ngFor="let hero of result.results" >
+      <ion-card-header >
+        <ion-card-subtitle *ngIf="hero.biography.alignment == 'bad'">Villain</ion-card-subtitle>
+        <ion-card-subtitle *ngIf="hero.biography.alignment == 'good'">Hero</ion-card-subtitle>
+        <ion-card-subtitle *ngIf="hero.biography.alignment == 'neutral'">Neutral</ion-card-subtitle>
+        <ion-card-title>{{hero.name}}</ion-card-title>
+      </ion-card-header>
+            
+      <ion-card-content class="CardContent">
+        ID: {{hero.id}} <br>
+        Intelligence: {{hero.powerstats.intelligence}} <ion-progress-bar [value]="hero.powerstats.intelligence / 100"></ion-progress-bar> <br>
+        Strength: {{hero.powerstats.strength}} <ion-progress-bar [value]="hero.powerstats.strength / 100"></ion-progress-bar> <br>
+        Speed: {{hero.powerstats.speed}} <ion-progress-bar [value]="hero.powerstats.speed / 100"></ion-progress-bar> <br>
+        Durability: {{hero.powerstats.durability}} <ion-progress-bar [value]="hero.powerstats.durability / 100"></ion-progress-bar> <br>
+        Power: {{hero.powerstats.power}} <ion-progress-bar [value]="hero.powerstats.power / 100"></ion-progress-bar> <br>
+        Combat: {{hero.powerstats.combat}} <ion-progress-bar [value]="hero.powerstats.combat / 100"></ion-progress-bar>
+      </ion-card-content>  
+    
+      <ion-button (click)="goSingleHero(hero.id)" color="light" size="small">
+        <ion-icon ios="ios-information-circle" md="md-information-circle"></ion-icon>
+      </ion-button>        
+    </ion-card>
+  </div>
+    
+  <ion-list *ngFor="let hro of heroes">
+    <ion-item *ngIf="!search">
+      {{hro.name}} <ion-thumbnail slot="end"><img [src]="hro.images.lg"></ion-thumbnail>
+    </ion-item>
+  </ion-list>
+</ion-content>  

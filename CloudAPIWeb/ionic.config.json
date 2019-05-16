@@ -1,0 +1,7 @@
+{
+  "name": "CloudAPIWeb",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
