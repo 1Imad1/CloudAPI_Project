@@ -1,14 +1,24 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title slot="start">List</ion-title>
+  <ion-toolbar mode="ios">
+    <ion-title slot="start">Search Your Hero / Villain</ion-title>
+  </ion-toolbar>
 
-    <ion-toolbar>
-      <ion-searchbar [(ngModel)]="search" (ionChange)="Searching(search)" placeholder="Search your Hero or Villain"></ion-searchbar>
-    </ion-toolbar>
+  <ion-toolbar >
+    <ion-searchbar mode="ios" slot="start" [(ngModel)]="id" (ionChange)="SearchById()" placeholder="By id"></ion-searchbar>
+    <ion-searchbar mode="md" slot="start" [(ngModel)]="search" (ionChange)="Searching(search)" placeholder="By name"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
   
 <ion-content>
+  <div *ngIf="id == hero.id">
+      <ion-list style="text-align:center; padding:10px;" *ngIf="hero">
+        <ion-item style="border-radius: 25px; padding: 50px; border: 2px solid black; text-align: center;" *ngIf="id">
+          Searched By ID:  {{hero.name}} <ion-thumbnail slot="end"><img *ngIf="image" [src]="image.url"></ion-thumbnail>
+        </ion-item>
+        <ion-label *ngIf="id" style="color:gray">Search by name for information</ion-label>
+      </ion-list>
+  </div>
+
   <div *ngIf="result">
     <ion-card class="card" *ngFor="let hero of result.results" >
       <ion-card-header >
@@ -33,10 +43,12 @@
       </ion-button>        
     </ion-card>
   </div>
-    
-  <ion-list *ngFor="let hro of heroes">
-    <ion-item *ngIf="!search">
-      {{hro.name}} <ion-thumbnail slot="end"><img [src]="hro.images.lg"></ion-thumbnail>
-    </ion-item>
-  </ion-list>
+
+  <div *ngIf="!search">
+      <ion-list *ngFor="let hro of heroes">
+        <ion-item *ngIf="!id">
+          {{hro.name}} <ion-thumbnail slot="end"><img [src]="hro.images.lg"></ion-thumbnail>
+        </ion-item>
+      </ion-list>
+  </div>
 </ion-content>  

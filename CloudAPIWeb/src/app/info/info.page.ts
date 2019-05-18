@@ -24,27 +24,28 @@ export class InfoPage implements OnInit {
 
     this.heroesService.GetSingleHero(this.id).subscribe((singleHero) => {
       this.hero = singleHero
-    })
+    },err => console.log(err.message))
 
     this.heroesService.GetAppearance(this.id).subscribe((appearing => {
       this.appearance = appearing
-    }))
+    }),err => console.log(err.message))
 
     this.heroesService.GetImage(this.id).subscribe((jpg => {
       this.image = jpg
-    }))
+    }),err => console.log(err.message))
 
     this.heroesService.GetWork(this.id).subscribe((job => {
       this.work = job
-    }))
+    }),err => console.log(err.message))
 
     this.heroesService.GetConnection(this.id).subscribe((relation => {
       this.connection = relation
-    }))
+    }),err => console.log(err.message))
 
     this.heroesService.GetBiography(this.id).subscribe((journal => {
       this.bio = journal
-    })) 
+      console.log(this.bio.aliases)
+    }),err => console.log(err.message))
   }
 
   ngOnInit() {

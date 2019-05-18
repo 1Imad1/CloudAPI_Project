@@ -6,6 +6,7 @@ const routes: Routes = [
   { path: 'account', loadChildren: 'src/app/account/account.module#AccountPageModule' },
   { path: 'list', loadChildren: 'src/app/list/list.module#ListPageModule' },
   { path: 'info/:id', loadChildren: 'src/app/info/info.module#InfoPageModule' },
+  { path: 'hero-or-villain-not-found', loadChildren: './hero-or-villain-not-found/hero-or-villain-not-found.module#HeroOrVillainNotFoundPageModule' },
 ];
 @NgModule({
   imports: [

@@ -1,0 +1,11 @@
+C:\Users\Imad\Documents\2deJaar\Sem2\Cloud APIs 3Stud\Project\CloudAPI_Project\OwnRestApi\RestApi\RestApi\bin\Debug\netcoreapp2.0\RestApi.deps.json
+C:\Users\Imad\Documents\2deJaar\Sem2\Cloud APIs 3Stud\Project\CloudAPI_Project\OwnRestApi\RestApi\RestApi\bin\Debug\netcoreapp2.0\RestApi.runtimeconfig.json
+C:\Users\Imad\Documents\2deJaar\Sem2\Cloud APIs 3Stud\Project\CloudAPI_Project\OwnRestApi\RestApi\RestApi\bin\Debug\netcoreapp2.0\RestApi.runtimeconfig.dev.json
+C:\Users\Imad\Documents\2deJaar\Sem2\Cloud APIs 3Stud\Project\CloudAPI_Project\OwnRestApi\RestApi\RestApi\bin\Debug\netcoreapp2.0\RestApi.dll
+C:\Users\Imad\Documents\2deJaar\Sem2\Cloud APIs 3Stud\Project\CloudAPI_Project\OwnRestApi\RestApi\RestApi\obj\Debug\netcoreapp2.0\RestApi.csprojResolveAssemblyReference.cache
+C:\Users\Imad\Documents\2deJaar\Sem2\Cloud APIs 3Stud\Project\CloudAPI_Project\OwnRestApi\RestApi\RestApi\obj\Debug\netcoreapp2.0\RestApi.csproj.CoreCompileInputs.cache
+C:\Users\Imad\Documents\2deJaar\Sem2\Cloud APIs 3Stud\Project\CloudAPI_Project\OwnRestApi\RestApi\RestApi\obj\Debug\netcoreapp2.0\RestApi.AssemblyInfoInputs.cache
+C:\Users\Imad\Documents\2deJaar\Sem2\Cloud APIs 3Stud\Project\CloudAPI_Project\OwnRestApi\RestApi\RestApi\obj\Debug\netcoreapp2.0\RestApi.AssemblyInfo.cs
+C:\Users\Imad\Documents\2deJaar\Sem2\Cloud APIs 3Stud\Project\CloudAPI_Project\OwnRestApi\RestApi\RestApi\bin\Debug\netcoreapp2.0\RestApi.pdb
+C:\Users\Imad\Documents\2deJaar\Sem2\Cloud APIs 3Stud\Project\CloudAPI_Project\OwnRestApi\RestApi\RestApi\obj\Debug\netcoreapp2.0\RestApi.dll
+C:\Users\Imad\Documents\2deJaar\Sem2\Cloud APIs 3Stud\Project\CloudAPI_Project\OwnRestApi\RestApi\RestApi\obj\Debug\netcoreapp2.0\RestApi.pdb
