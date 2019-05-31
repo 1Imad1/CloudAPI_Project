@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Trivia-RestApi</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+ <div *ngFor="let trivia of trivias; let i of index">
+  <div *ngFor="let hero of heroes">
+    <div *ngIf="hero.id == trivia.heroID">
+      <table>
+        <tr>
+          <th>Question</th>
+          <th>Wat is het antwoord</th>
+          <th>Juiste antwoord</th>
+          <th>Delete</th>
+        </tr>
+        <tr>
+          <td>A question about {{hero.name}} - {{trivia.questions}}</td>
+          <td [(ngModel)]="JouwAntwoord" ngDefaultControl><ion-input  placeholder="type hier je antwoord" ngDefaultControl></ion-input></td>
+          <td> <p *ngIf="showAntwoord == true">{{trivia.answer}}</p></td>
+          <td><ion-button (click)="Delete(trivia.id)">Delete</ion-button></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+ </div>
+
+  <div>
+    <ion-button (click)="VorigePagina()">Vorige</ion-button>
+    <ion-button (click)="VolgendePagina()">Volgende</ion-button>
+    <ion-button (click)="RightAnswer()">Show juiste antwoord</ion-button>
+    <ion-input [(ngModel)]="score" placeholder="Hoeveel antwoorden had je juist op deze pagina quiz?"></ion-input>
+  </div>
+
+  <div *ngIf="score">
+    <ion-item *ngIf="score >= 2"><ion-label >Goed Gedaan!!</ion-label></ion-item>
+    <ion-item *ngIf="score < 2"> <ion-label>Dit is niet goed</ion-label></ion-item>
+  </div>
+
+  <div *ngIf="auth.isAuthenticated()" padding>
+    <ion-item>
+        <ion-input [(ngModel)]="heroId">geef hero id: </ion-input>
+        <ion-input [(ngModel)]="question">geef vraag: </ion-input>
+        <ion-input [(ngModel)]="answer">geef antwoord: </ion-input>
+        <ion-button *ngIf="auth.isAuthenticated()" (click)="Posting()">POST</ion-button>
+    </ion-item>
+    <div>
+      Hero id: hierin geef je de id die je in de hero lijst hebt gevonden 
+      en waar je een vraag van over weet en het antwoord
+    </div>
+  </div>
+  
+  <div *ngIf="!auth.isAuthenticated()">
+      <ion-label>Login Om te kunnen posten</ion-label>
+      <ion-button href="tabs/home">Go To Login</ion-button>
+  </div>
+</ion-content>
