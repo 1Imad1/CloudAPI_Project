@@ -8,8 +8,8 @@ import {AuthService} from '../Auth/auth.service'
 })
 export class TriviaService {
 
-  //ApiUrl = "https://cloudapi-241723.appspot.com/api/trivia";
-  ApiUrl = "http://localhost:52869/api/trivia";
+  ApiUrl = "https://cloudapi-241723.appspot.com/api/trivia";
+  //ApiUrl = "http://localhost:52869/api/trivia";
   Authorize;
   
   constructor(private http: HttpClient, private auth: AuthService) {
