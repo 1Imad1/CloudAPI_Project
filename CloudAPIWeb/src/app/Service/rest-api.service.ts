@@ -9,7 +9,7 @@ export class RestApiService {
   constructor(public http: HttpClient) {}
 
   GetAllHeroes(){
-    return this.http.get<IAllInfo[]>("https://raw.githubusercontent.com/akabab/superhero-api/0.2.0/api/all.json")
+    return this.http.get<IAllInfo>("https://raw.githubusercontent.com/akabab/superhero-api/0.2.0/api/all.json")
   }
 
   Search(name: string){

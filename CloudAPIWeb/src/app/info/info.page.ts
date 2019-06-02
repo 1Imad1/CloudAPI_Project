@@ -19,7 +19,11 @@ export class InfoPage implements OnInit {
   id: any;
 
 
-  constructor(public heroesService: RestApiService, public activatedRoute: ActivatedRoute, public navCtrl: NavController){
+  constructor( 
+    public heroesService: RestApiService, 
+    public activatedRoute: ActivatedRoute, 
+    public navCtrl: NavController
+    ){
     this.id = this.activatedRoute.snapshot.params['id'];
 
     this.heroesService.GetSingleHero(this.id).subscribe((singleHero) => {
@@ -55,4 +59,13 @@ export class InfoPage implements OnInit {
   goBack(){
     window.history.back();
   }
+
+/*   async info(){
+    const popover = await this.popoverController.create({
+      component: PopoverComponent,
+      event: event,
+      translucent: true
+    });
+    return await popover.present();
+  } */
 }

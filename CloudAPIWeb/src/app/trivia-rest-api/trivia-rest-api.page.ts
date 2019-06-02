@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TriviaService, ITrivias } from '../Service/trivia.service';
 import { IAllInfo, RestApiService } from '../Service/rest-api.service';
 import { AuthService } from '../Auth/auth.service';
-import { AlertController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 
 
 @Component({
@@ -15,17 +15,19 @@ export class TriviaRestApiPage implements OnInit {
   trivias;  
   heroes:IAllInfo
 
-  heroId:number = 0;
+  heroId:number;
   question:string = "";
   answer:string = "";
-  
-  triviass: ITrivias[];
-  page: number = 0;
 
+  page: number = 0;
+  
   showAntwoord: boolean = false;
   score: number;
 
-  constructor(public alertController: AlertController, public auth: AuthService, private quiz: TriviaService, public heroesService: RestApiService) {
+  gepost: boolean = false;
+  gedelete: boolean = false;
+
+  constructor(public toastController: ToastController, public auth: AuthService, private quiz: TriviaService, public heroesService: RestApiService) {
 
     this.heroesService.GetAllHeroes().subscribe((hero) =>{
       console.log(hero);
@@ -35,7 +37,8 @@ export class TriviaRestApiPage implements OnInit {
     this.GetQuiz();
 
     if(this.auth.isAuthenticated()){
-      this.Posting()
+      this.Posting();
+      this.Delete(event);
     }
   }
 
@@ -73,15 +76,29 @@ export class TriviaRestApiPage implements OnInit {
     
   }
 
-  Posting(){
+  async Posting(){
+
     let res: ITrivias = {
       "heroID": this.heroId,
       "questions": this.question,
       "answer": this.answer
     }
 
+    if(this.gepost == true){
+      const toast = await this.toastController.create({
+        message: "You just Posted, click 'volgende' to see your question",
+        position: "bottom",
+        duration: 2000
+      });
+      toast.present();
+
+      this.heroId = 0;
+      this.question = ""
+      this.answer = ""
+    }
+    
+    this.gepost = true;
     this.quiz.PostTrivia(res)
-    console.log(res)
   }
   
   RightAnswer(){
@@ -92,8 +109,10 @@ export class TriviaRestApiPage implements OnInit {
     this.showAntwoord = false;
   }
 
-  Delete(id){
+  Delete(id){ 
     this.quiz.DeleteTrivia(id)
-    console.log("delete")
+    console.log("deleete")
+
+    this.gedelete = true;  
   }
 }

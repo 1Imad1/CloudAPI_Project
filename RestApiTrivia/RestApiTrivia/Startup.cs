@@ -32,15 +32,17 @@ namespace RestApiTrivia
         {
             services.AddMvc();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            //services.AddDbContext<ShowDbContext>(options => 
-            //    options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
-            services.AddMvc().AddXmlDataContractSerializerFormatters();
 
             services.AddDbContext<ShowDbContext>(options =>
-            {
-                options.UseMySQL(
-                    Configuration.GetConnectionString("DefaultConnection"));
-            });
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddMvc().AddXmlDataContractSerializerFormatters();
+
+            //services.AddDbContext<ShowDbContext>(options =>
+            //{
+            //    options.UseMySQL(
+            //        Configuration.GetConnectionString("DefaultConnection"));
+            //});
 
             services.Configure<ApiBehaviorOptions>(options => { options.SuppressModelStateInvalidFilter = true; });
 

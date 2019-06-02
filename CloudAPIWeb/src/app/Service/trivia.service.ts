@@ -8,12 +8,12 @@ import {AuthService} from '../Auth/auth.service'
 })
 export class TriviaService {
 
-  ApiUrl = "https://cloudapi-241723.appspot.com/api/trivia";
-  //ApiUrl = "http://localhost:52869/api/trivia";
-  Options;
+  //ApiUrl = "https://cloudapi-241723.appspot.com/api/trivia";
+  ApiUrl = "http://localhost:52869/api/trivia";
+  Authorize;
   
   constructor(private http: HttpClient, private auth: AuthService) {
-    this.Options = {
+    this.Authorize = {
       headers: new HttpHeaders({
         'Authorization': 'Bearer ' + this.auth.accessToken,
         'Content-Type': 'application/json'
@@ -22,21 +22,21 @@ export class TriviaService {
   }
 
   GetTrivia(){
-    return this.http.get<ITrivias>(this.ApiUrl, this.Options)
+    return this.http.get<ITrivias>(this.ApiUrl, this.Authorize)
   }
 
   Paging(page){
-    return this.http.get<ITrivias[]>(this.ApiUrl + "?page=" + page.toString());
+    return this.http.get<ITrivias[]>(this.ApiUrl + "?page=" + page.toString(),this.Authorize);
   }
 
   PostTrivia(trivia:ITrivias){
     console.log("gepost")
-    this.http.post(this.ApiUrl, trivia, this.Options).subscribe()
+    this.http.post(this.ApiUrl, trivia, this.Authorize).subscribe()
   }
 
   DeleteTrivia(id:number){
     console.log("gepost")
-    this.http.delete(this.ApiUrl + "/" + id).subscribe()
+    this.http.delete(this.ApiUrl + "/" + id, this.Authorize).subscribe()
   }
 }
 

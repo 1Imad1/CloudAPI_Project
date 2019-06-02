@@ -4,7 +4,7 @@ import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
   {
-    path: 'tabs',
+    path: '',
     component: TabsPage,
     children: [
       {
@@ -17,11 +17,11 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'account',
+        path: 'home',
         children: [
           {
             path: '', 
-            loadChildren: 'src/app/account/account.module#AccountPageModule' 
+            loadChildren: 'src/app/home/home.module#HomePageModule' 
           }
         ]
       },      
@@ -33,12 +33,21 @@ const routes: Routes = [
             loadChildren: 'src/app/info/info.module#InfoPageModule'
           }
         ]
+      },
+      {
+        path: 'quiz',
+        children: [
+          {
+            path: '', 
+            loadChildren: './trivia-rest-api/trivia-rest-api.module#TriviaRestApiPageModule'
+          }
+        ]
       }
     ]
   },  
   {
     path: '',
-    redirectTo: '/tabs/account',
+    redirectTo: 'tabs/home',
     pathMatch: 'full'
   }
 ];

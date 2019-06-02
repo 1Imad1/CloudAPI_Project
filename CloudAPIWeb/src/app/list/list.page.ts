@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { RestApiService, IAllInfo, Images, Biography, Result } from '../Service/rest-api.service';
+import { Component, OnInit } from '@angular/core';
+import { RestApiService, IAllInfo, Images, Biography, Result} from '../Service/rest-api.service';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 
@@ -10,7 +10,7 @@ import { NavController } from '@ionic/angular';
 })
 export class ListPage implements OnInit {
 
-  heroes:IAllInfo[];
+  heroes:IAllInfo;
   hero:IAllInfo
   bioghrapy:Biography;
 
@@ -22,6 +22,7 @@ export class ListPage implements OnInit {
   
   search:any;
   id:any;
+  ResultHeroes:any;
 
   constructor(public route: Router, public navctrl: NavController, public heroesService: RestApiService) {
 
@@ -32,7 +33,7 @@ export class ListPage implements OnInit {
       this.cancelInterval = setInterval(()=> {clearInterval(this.interval); clearInterval(this.cancelInterval) },1000); 
     }), err => console.log(err.message))
     
-    
+
   }  
 
   ngOnInit() {
@@ -41,9 +42,10 @@ export class ListPage implements OnInit {
   Searching(search){    
     this.heroesService.Search(search).subscribe(success=>{
       this.result = success;
+      this.ResultHeroes = this.result.results
       console.log(search)
 
-      this.result.results.forEach(res => {
+      this.ResultHeroes.forEach(res => {
         this.heroesService.GetSingleHero(res.id).subscribe((singleHero =>{
           this.hero = singleHero
         
@@ -70,6 +72,6 @@ export class ListPage implements OnInit {
 
   goSingleHero(id: number) {
     this.interval = setInterval(()=> { this.navctrl.navigateForward("info/"+ id), this.image },1000); 
-    this.cancelInterval = setInterval(()=> {clearInterval(this.interval); clearInterval(this.cancelInterval) },1000); 
+    this.cancelInterval = setInterval(()=> {clearInterval(this.interval); clearInterval(this.cancelInterval) },1000)
   }
 }

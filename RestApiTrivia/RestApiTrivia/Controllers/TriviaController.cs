@@ -15,6 +15,9 @@ namespace RestApiTrivia.Controllers
 {
 
     [Route("api/[controller]")]
+    [ApiController]
+    [Authorize]
+
     public class TriviaController : Controller
     {
         private ShowDbContext showDb;
@@ -23,9 +26,9 @@ namespace RestApiTrivia.Controllers
         {
             showDb = showDbContext;
         }
-        
+
         [HttpGet]
-        public List<Trivia> GetAllBooks(string questions, string answer,int? page, string sort, int length = 4, string dir = "asc")
+        public List<Trivia> GetAllTrivias(string questions, string answer, int? page, string sort, int length = 4, string dir = "asc")
         {
             IQueryable<Trivia> query = showDb.Trivias;
             if (!string.IsNullOrWhiteSpace(questions))
@@ -56,6 +59,51 @@ namespace RestApiTrivia.Controllers
             return query.ToList();
         }
 
+        //[HttpGet("[action]")]
+        //public ActionResult<Trivia> Sorteren(string sort, string dir = "asc")
+        //{
+        //    IQueryable<Trivia> query = showDb.Trivias;
+
+        //    if (!string.IsNullOrWhiteSpace(sort))
+        //    {
+        //        switch (sort)
+        //        {
+        //            case "questions":
+        //                if (dir == "asc")
+        //                    query = query.OrderBy(q => q.questions);
+        //                else if (dir == "desc")
+        //                    query = query.OrderByDescending(q => q.questions);
+        //                break;
+        //        }
+        //    }
+
+        //    return Ok(query);
+        //}
+
+        //[HttpGet]
+        //[Route("[action]")]
+        //public ActionResult<Trivia> zoeken(string questions, string answer)
+        //{
+        //    IQueryable<Trivia> query = showDb.Trivias;
+        //    if (!string.IsNullOrWhiteSpace(questions))
+        //        query = query.Where(q => q.questions == questions);
+
+        //    if (!string.IsNullOrWhiteSpace(answer))
+        //        query = query.Where(a => a.answer == answer);
+
+        //    return Ok(query);
+        //}
+
+        //[HttpGet]
+        //public ActionResult<Trivia> paging(int? page, int? length)
+        //{
+
+        //    var shows = showDb.Trivias;
+        //    var currentPage = page ?? 1;
+        //    var currentLength = length ?? 5;
+        //    return Ok(shows.Skip((currentPage - 1) * currentLength).Take(currentLength));
+        //}
+
         [Route("{id}")]
         [HttpGet]
         public ActionResult<Trivia> GetTriviaById(int id)
@@ -77,12 +125,11 @@ namespace RestApiTrivia.Controllers
                 return NotFound("Not found, becaus deleted");
             else
                 showDb.Trivias.Remove(DeleteWithId);
-                showDb.SaveChanges();
+            showDb.SaveChanges();
             return Ok("Trivia succesfully deleted!");
         }
 
         [HttpPost]
-        [Authorize]
         public IActionResult PostTrivia([FromBody] Trivia trivia)
         {
             if (!ModelState.IsValid)
@@ -98,7 +145,7 @@ namespace RestApiTrivia.Controllers
         public IActionResult Update([FromBody] Trivia trivia)
         {
             var UpdateTrivia = showDb.Trivias.Find(trivia.ID);
-            if(UpdateTrivia == null)
+            if (UpdateTrivia == null)
             {
                 return NotFound("Resource is not found");
             }
@@ -110,138 +157,5 @@ namespace RestApiTrivia.Controllers
             showDb.SaveChanges();
             return Ok(UpdateTrivia);
         }
-
-        //static List<Trivia> list = new List<Trivia>();
-
-        //static TriviaController()
-        //{
-        //    list.Add(new Trivia()
-        //    {
-        //        ID = 1,
-        //        HeroID = 15,
-        //        questions = "Give me one alias of the three Aliases he has",
-        //        answer = "Prototype, Zues, Blacklight"
-        //    });
-
-        //    list.Add(new Trivia()
-        //    {
-        //        ID = 2,
-        //        HeroID = 254,
-        //        questions = "give me 1 group-affiliation of the 3 affiliation it is in",
-        //        answer = "Formerly Morlocks, X-Force, Mutant Liberation Front"
-        //    });
-
-        //    list.Add(new Trivia()
-        //    {
-        //        ID = 3,
-        //        HeroID = 588,
-        //        questions = "Where did he born?",
-        //        answer = "Mojoworld"
-        //    });
-
-        //    list.Add(new Trivia()
-        //    {
-        //        ID = 4,
-        //        HeroID = 112,
-        //        questions = "What kind of work does this hero do?",
-        //        answer = "Vampire hunter"
-        //    });
-
-        //    list.Add(new Trivia()
-        //    {
-        //        ID = 5,
-        //        HeroID = 220,
-        //        questions = "How Much Power does he have?",
-        //        answer = "48"
-        //    });
-
-        //    list.Add(new Trivia()
-        //    {
-        //        ID = 6,
-        //        HeroID = 731,
-        //        questions = "he took the identity of Jay Garrick, who was The Flash on Earth 3, How?",
-        //        answer = "Whilst trying to steal The Flash's (Barry Allen) speed"
-        //    });
-
-        //    list.Add(new Trivia()
-        //    {
-        //        ID = 7,
-        //        HeroID = 700,
-        //        questions = "Group affiliation?",
-        //        answer = "Formerly X-Men"
-        //    });
-
-        //    list.Add(new Trivia()
-        //    {
-        //        ID = 8,
-        //        HeroID = 1,
-        //        questions = "Was he ever an Musician?",
-        //        answer = "yes"
-        //    });
-
-        //    list.Add(new Trivia()
-        //    {
-        //        ID = 9,
-        //        HeroID = 8,
-        //        questions = " Is he part of the L.E.G.I.O.N., R.E.B.E.L.S., or both",
-        //        answer = "both"
-        //    });
-
-        //    list.Add(new Trivia()
-        //    {
-        //        ID = 10,
-        //        HeroID = 18,
-        //        questions = "Place of birth?",
-        //        answer = "Chest"
-        //    });
-        //}
-
-        //[HttpGet]
-        //public List<Trivia> GetTrivia()
-        //{
-        //    return list;
-        //}
-
-        //[Route("{id}")]
-        //[HttpGet]
-        //public ActionResult<Trivia> GetTriviaById(int id)
-        //{
-        //    if (list.Exists(trvia => trvia.ID == id))
-        //        return list.First(tr => tr.ID == id);
-        //    else
-        //        return NotFound();
-        //}
-
-        //[Route("{id}")]
-        //[HttpDelete]
-        //public IActionResult DeleteTrivia(int id)
-        //{
-        //    if (list.Exists(trvia => trvia.ID == id))
-        //    {
-        //        var trivia = list.First(tr => tr.ID == id);
-        //        list.Remove(trivia);
-        //        return NoContent();
-        //    }
-        //    else
-        //        return NotFound();
-        //}
-
-        //[HttpPost]
-        //public ActionResult<Trivia> AddTrivia([FromBody] Trivia trivia)
-        //{
-        //    //ken er ID aan toe
-        //    var max = list.Max(tr => tr.ID);
-        //    trivia.ID = max + 1;
-        //    list.Add(trivia);
-        //    //return fighter met ID
-        //    return Created("", trivia);
-        //}
     }
 }
-
-//{
-//    "id": 5,
-//    "heroID": 220,
-//    "questions": "How Much Power does he have?",
-//    "answer": "48"
-//}

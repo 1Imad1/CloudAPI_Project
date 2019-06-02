@@ -3,7 +3,7 @@
     <ion-title slot="start">Search Your Hero / Villain</ion-title>
   </ion-toolbar>
 
-  <ion-toolbar >
+  <ion-toolbar>
     <ion-searchbar mode="ios" slot="start" [(ngModel)]="id" (ionChange)="SearchById()" placeholder="By id"></ion-searchbar>
     <ion-searchbar mode="md" slot="start" [(ngModel)]="search" (ionChange)="Searching(search)" placeholder="By name"></ion-searchbar>
   </ion-toolbar>
@@ -20,7 +20,7 @@
   </div>
 
   <div *ngIf="result">
-    <ion-card class="card" *ngFor="let hero of result.results" >
+    <ion-card class="card" *ngFor="let hero of ResultHeroes" >
       <ion-card-header >
         <ion-card-subtitle *ngIf="hero.biography.alignment == 'bad'">Villain</ion-card-subtitle>
         <ion-card-subtitle *ngIf="hero.biography.alignment == 'good'">Hero</ion-card-subtitle>
