@@ -30,12 +30,10 @@ export class TriviaService {
   }
 
   PostTrivia(trivia:ITrivias){
-    console.log("gepost")
     this.http.post(this.ApiUrl, trivia, this.Authorize).subscribe()
   }
 
   DeleteTrivia(id:number){
-    console.log("gepost")
     this.http.delete(this.ApiUrl + "/" + id, this.Authorize).subscribe()
   }
 }

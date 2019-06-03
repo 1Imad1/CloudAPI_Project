@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RestApiService, IAllInfo, Images, Biography, Result} from '../Service/rest-api.service';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import {AuthService} from '../Auth/auth.service'
 
 @Component({
   selector: 'app-list',
@@ -24,7 +25,7 @@ export class ListPage implements OnInit {
   id:any;
   ResultHeroes:any;
 
-  constructor(public route: Router, public navctrl: NavController, public heroesService: RestApiService) {
+  constructor(private auth: AuthService, public route: Router, public navctrl: NavController, public heroesService: RestApiService) {
 
     this.heroesService.GetAllHeroes().subscribe((test =>{
       this.heroes = test

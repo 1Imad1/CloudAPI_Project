@@ -36,7 +36,7 @@ namespace RestApiTrivia
             //local
 
             //services.AddDbContext<ShowDbContext>(options =>
-            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //    options.UseSqlServer(Configuration.GetConnectionString("LocalConnection")));
 
             services.AddMvc().AddXmlDataContractSerializerFormatters();
 

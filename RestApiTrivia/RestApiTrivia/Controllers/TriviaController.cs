@@ -59,51 +59,6 @@ namespace RestApiTrivia.Controllers
             return query.ToList();
         }
 
-        //[HttpGet("[action]")]
-        //public ActionResult<Trivia> Sorteren(string sort, string dir = "asc")
-        //{
-        //    IQueryable<Trivia> query = showDb.Trivias;
-
-        //    if (!string.IsNullOrWhiteSpace(sort))
-        //    {
-        //        switch (sort)
-        //        {
-        //            case "questions":
-        //                if (dir == "asc")
-        //                    query = query.OrderBy(q => q.questions);
-        //                else if (dir == "desc")
-        //                    query = query.OrderByDescending(q => q.questions);
-        //                break;
-        //        }
-        //    }
-
-        //    return Ok(query);
-        //}
-
-        //[HttpGet]
-        //[Route("[action]")]
-        //public ActionResult<Trivia> zoeken(string questions, string answer)
-        //{
-        //    IQueryable<Trivia> query = showDb.Trivias;
-        //    if (!string.IsNullOrWhiteSpace(questions))
-        //        query = query.Where(q => q.questions == questions);
-
-        //    if (!string.IsNullOrWhiteSpace(answer))
-        //        query = query.Where(a => a.answer == answer);
-
-        //    return Ok(query);
-        //}
-
-        //[HttpGet]
-        //public ActionResult<Trivia> paging(int? page, int? length)
-        //{
-
-        //    var shows = showDb.Trivias;
-        //    var currentPage = page ?? 1;
-        //    var currentLength = length ?? 5;
-        //    return Ok(shows.Skip((currentPage - 1) * currentLength).Take(currentLength));
-        //}
-
         [Route("{id}")]
         [HttpGet]
         public ActionResult<Trivia> GetTriviaById(int id)

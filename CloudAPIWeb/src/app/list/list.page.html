@@ -1,24 +1,24 @@
-<ion-header>
+<ion-header *ngIf="auth.isAuthenticated()">
   <ion-toolbar mode="ios">
     <ion-title slot="start">Search Your Hero / Villain</ion-title>
   </ion-toolbar>
-
+  
   <ion-toolbar>
     <ion-searchbar mode="ios" slot="start" [(ngModel)]="id" (ionChange)="SearchById()" placeholder="By id"></ion-searchbar>
     <ion-searchbar mode="md" slot="start" [(ngModel)]="search" (ionChange)="Searching(search)" placeholder="By name"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
-  
-<ion-content>
+    
+<ion-content *ngIf="auth.isAuthenticated()">
   <div *ngIf="id == hero.id">
-      <ion-list style="text-align:center; padding:10px;" *ngIf="hero">
-        <ion-item style="border-radius: 25px; padding: 50px; border: 2px solid black; text-align: center;" *ngIf="id">
-          Searched By ID:  {{hero.name}} <ion-thumbnail slot="end"><img *ngIf="image" [src]="image.url"></ion-thumbnail>
-        </ion-item>
-        <ion-label *ngIf="id" style="color:gray">Search by name for information</ion-label>
-      </ion-list>
+    <ion-list style="text-align:center; padding:10px;" *ngIf="hero">
+      <ion-item style="border-radius: 25px; padding: 50px; border: 2px solid black; text-align: center;" *ngIf="id">
+        Searched By ID:  {{hero.name}} <ion-thumbnail slot="end"><img *ngIf="image" [src]="image.url"></ion-thumbnail>
+      </ion-item>
+      <ion-label *ngIf="id" style="color:gray">Search by name for information</ion-label>
+    </ion-list>
   </div>
-
+  
   <div *ngIf="result">
     <ion-card class="card" *ngFor="let hero of ResultHeroes" >
       <ion-card-header >
@@ -27,7 +27,7 @@
         <ion-card-subtitle *ngIf="hero.biography.alignment == 'neutral'">Neutral</ion-card-subtitle>
         <ion-card-title>{{hero.name}}</ion-card-title>
       </ion-card-header>
-            
+      
       <ion-card-content class="CardContent">
         ID: {{hero.id}} <br>
         Intelligence: {{hero.powerstats.intelligence}} <ion-progress-bar [value]="hero.powerstats.intelligence / 100"></ion-progress-bar> <br>
@@ -37,18 +37,31 @@
         Power: {{hero.powerstats.power}} <ion-progress-bar [value]="hero.powerstats.power / 100"></ion-progress-bar> <br>
         Combat: {{hero.powerstats.combat}} <ion-progress-bar [value]="hero.powerstats.combat / 100"></ion-progress-bar>
       </ion-card-content>  
-    
+
       <ion-button (click)="goSingleHero(hero.id)" color="light" size="small">
         <ion-icon ios="ios-information-circle" md="md-information-circle"></ion-icon>
       </ion-button>        
     </ion-card>
   </div>
-
+  
   <div *ngIf="!search">
-      <ion-list *ngFor="let hro of heroes">
-        <ion-item *ngIf="!id">
-          {{hro.name}} <ion-thumbnail slot="end"><img [src]="hro.images.lg"></ion-thumbnail>
-        </ion-item>
-      </ion-list>
+    <ion-list *ngFor="let hro of heroes">
+      <ion-item *ngIf="!id">
+        {{hro.name}} <ion-thumbnail slot="end"><img [src]="hro.images.lg"></ion-thumbnail>
+      </ion-item>
+    </ion-list>
   </div>
-</ion-content>  
+</ion-content>
+
+
+
+<div class="NotLogged" style="text-align: center" *ngIf="!auth.isAuthenticated()">
+  <img src="https://cdn.shopify.com/s/files/1/0329/0333/products/prohibition_NO_ENTRY_AUTHORISED_PERSONS_ONLY.jpeg?v=1396239042" alt="">
+  <ion-button style="
+              width: 50%;
+              margin-left: 25%;
+              margin-right: 25%" 
+              href="tabs/home">
+              Go to Login
+  </ion-button>
+</div>

@@ -24,7 +24,7 @@
            </tr>
            <tr>
              <td>A question about {{hero.name}} - {{trivia.questions}}</td>
-             <td [(ngModel)]="JouwAntwoord"><ion-input  placeholder="type hier je antwoord"></ion-input></td>
+             <td [(ngModel)]="JouwAntwoord" ngDefaultControl ><ion-input  placeholder="type hier je antwoord" ngDefaultControl></ion-input></td>
              <td> <p *ngIf="showAntwoord == true">{{trivia.answer}}</p></td>
              <td><ion-button (click)="Delete(trivia.id)">Delete</ion-button></td>
            </tr>
@@ -64,6 +64,11 @@
   
   <div style="text-align: center" *ngIf="!auth.isAuthenticated()">
       <ion-label>Login snel in om de quiz te nemen</ion-label>
-      <ion-button href="tabs/home">Go To Login</ion-button>
+      <ion-button style="
+                  width: 50%;
+                  margin-left: 25%;
+                  margin-right: 25%" 
+                  href="tabs/home">Go To Login
+      </ion-button>
   </div>
 </ion-content>
