@@ -95,11 +95,11 @@ namespace RestApiTrivia.Controllers
             return StatusCode(StatusCodes.Status201Created);
         }
 
-        //[Route("{id}")]
+        [Route("{id}")]
         [HttpPut]
-        public IActionResult Update([FromBody] Trivia trivia)
+        public IActionResult Update(int id, [FromBody] Trivia trivia)
         {
-            var UpdateTrivia = showDb.Trivias.Find(trivia.ID);
+            var UpdateTrivia = showDb.Trivias.Find(id);
             if (UpdateTrivia == null)
             {
                 return NotFound("Resource is not found");

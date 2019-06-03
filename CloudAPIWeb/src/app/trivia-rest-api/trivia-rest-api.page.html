@@ -37,6 +37,7 @@
   <div *ngIf="auth.isAuthenticated()">
     <div>
       <ion-button (click)="VorigePagina()">Vorige</ion-button>
+      <ion-label style="border: 2px solid #062f77;">{{page}}</ion-label>
       <ion-button (click)="VolgendePagina()">Volgende</ion-button>
       <ion-button (click)="RightAnswer()">Show juiste antwoord</ion-button>
       <ion-button (click)="refresh()">Refresh Quiz</ion-button>

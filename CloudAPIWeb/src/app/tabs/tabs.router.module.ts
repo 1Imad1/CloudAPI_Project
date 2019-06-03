@@ -39,7 +39,7 @@ const routes: Routes = [
         children: [
           {
             path: '', 
-            loadChildren: './trivia-rest-api/trivia-rest-api.module#TriviaRestApiPageModule'
+            loadChildren: 'src/app/trivia-rest-api/trivia-rest-api.module#TriviaRestApiPageModule'
           }
         ]
       }
