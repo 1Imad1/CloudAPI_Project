@@ -1,7 +1,10 @@
 # A school project
-CloudAPI project for college 2018-2019. Calling an open API from the internet. Displayed Everything in an Ionic web application. The main objective is to learn about API's and creating one. 
+CloudAPI project for college 2018-2019. Calling an open API from the internet. Displayed Everything in an Ionic web application. The main objective is to learn about API's and creating one. You get extra credit for being creative so.. you have to make the project your own
 
-You get extra credit for being creative, so i like everything about comics (marvel universe and dc) also anime just anything that has to do with villains and heroes, so i used an API that gets every information that it contains from a hero or villain.. i present to you
+# The project...
+To be creative i had to think about what i like, so i like everything about comics and the movies of the comics (marvel universe and dc) also anime just anything that has to do with villains and heroes, so i used an API that gets every information that it contains from every hero or villain.. (that of course is available in the API of the person who created it)
+
+So i created a web application that gives you a list of villains and heroes in one page where you can searched by name or id, when you do this it returns a card that gives you little information about the hero or villain you searched. For more info you had to press the i button, this will take you to an other page where you get every information it contains. The other part was that i had to create my own API, so i created an Trivia API. The trivia API contains question i created that are about the heroes and villains i get from the API i used from the internet, you can add, edit or delete a question. Of course you get a score back when you got a question right.
 
 Heroes&Villains: search and get to know your favorite Hero/Villain. <br>
 used REST API's: https://superheroapi.com/api.php/api-key & https://akabab.github.io/superhero-api/api/ (to show all heroes and villains)
