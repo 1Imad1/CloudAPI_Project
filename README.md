@@ -30,6 +30,8 @@ GET:  https://cloudapi-241723.appspot.com/api/trivia/(id) <br>
 DELETE:  https://cloudapi-241723.appspot.com/api/trivia/(id) <br>
 PUT:  https://cloudapi-241723.appspot.com/api/trivia/(id)
 
+(unfortunately my API is not available anymore)
+
 # You can Sort by questions:
 
 default sort staat op asc: alphabetical order <br>
