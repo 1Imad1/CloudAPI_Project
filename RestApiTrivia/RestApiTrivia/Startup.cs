@@ -35,17 +35,18 @@ namespace RestApiTrivia
 
             //local
 
-            //services.AddDbContext<ShowDbContext>(options =>
-            //    options.UseSqlServer(Configuration.GetConnectionString("LocalConnection")));
+            services.AddDbContext<ShowDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("LocalConnection")));
 
+            services.AddMvc(option => option.EnableEndpointRouting = false);
             services.AddMvc().AddXmlDataContractSerializerFormatters();
 
             //cloud
-            services.AddDbContext<ShowDbContext>(options =>
-            {
-                options.UseMySQL(
-                    Configuration.GetConnectionString("DefaultConnection"));
-            });
+            //services.AddDbContext<ShowDbContext>(options =>
+            //{
+            //    options.UseMySQL(
+            //        Configuration.GetConnectionString("DefaultConnection"));
+            //});
 
             services.Configure<ApiBehaviorOptions>(options => { options.SuppressModelStateInvalidFilter = true; });
 
@@ -75,8 +76,6 @@ namespace RestApiTrivia
                 app.UseHsts();
             }
 
-            DbInitializer.Initialize(showDbContext);
-
             app.UseHttpsRedirection();
 
 
@@ -87,6 +86,8 @@ namespace RestApiTrivia
 
             app.UseAuthentication();
             app.UseMvc();
+
+            DbInitializer.Initialize(showDbContext);
         }
     }
 }

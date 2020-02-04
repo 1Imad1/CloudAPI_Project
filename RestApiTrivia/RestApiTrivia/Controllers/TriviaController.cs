@@ -16,7 +16,6 @@ namespace RestApiTrivia.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
 
     public class TriviaController : Controller
     {
@@ -50,7 +49,6 @@ namespace RestApiTrivia.Controllers
                 }
             }
 
-
             if (page.HasValue)
             {
                 query = query.Skip(page.Value * length);
@@ -73,6 +71,7 @@ namespace RestApiTrivia.Controllers
 
         [Route("{id}")]
         [HttpDelete]
+        [Authorize]
         public ActionResult<Trivia> DeleteTriviaById(int id)
         {
             var DeleteWithId = showDb.Trivias.Find(id);
@@ -97,6 +96,7 @@ namespace RestApiTrivia.Controllers
 
         [Route("{id}")]
         [HttpPut]
+        [Authorize]
         public IActionResult Update(int id, [FromBody] Trivia trivia)
         {
             var UpdateTrivia = showDb.Trivias.Find(id);
