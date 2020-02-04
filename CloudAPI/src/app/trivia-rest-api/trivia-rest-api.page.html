@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Trivia-RestApi</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="!auth.isAuthenticated()">
+    <p style="text-align: center">Your face, when you can't take my amazing quiz</p>
+    <img src="https://imgix.bustle.com/uploads/image/2019/5/7/b1337414-6082-48a9-9b9f-212fac44c844-avengers-endgame-hulk.jpg?w=1020&h=574&fit=crop&crop=faces&auto=format&q=70" alt="">
+  </div>
+
+  <div *ngIf="auth.isAuthenticated()">
+    <div *ngFor="let trivia of trivias; let i of index">
+     <div *ngFor="let hero of heroes">
+       <div *ngIf="hero.id == trivia.heroID">
+         <table>
+           <tr>
+             <th>Question</th>
+             <th>Wat is het antwoord</th>
+             <th>Juiste antwoord</th>
+             <th>Delete</th>
+           </tr>
+           <tr>
+             <td>A question about {{hero.name}} - {{trivia.questions}}</td>
+             <td [(ngModel)]="JouwAntwoord" ngDefaultControl ><ion-input  placeholder="type hier je antwoord" ngDefaultControl></ion-input></td>
+             <td> <p *ngIf="showAntwoord == true">{{trivia.answer}}</p></td>
+             <td><ion-button (click)="Delete(trivia.id)">Delete</ion-button></td>
+           </tr>
+         </table>
+       </div>
+     </div>
+    </div>
+  </div>
+
+  <div *ngIf="auth.isAuthenticated()">
+    <div>
+      <ion-button (click)="VorigePagina()">Vorige</ion-button>
+      <ion-label style="border: 2px solid #062f77;">{{page}}</ion-label>
+      <ion-button (click)="VolgendePagina()">Volgende</ion-button>
+      <ion-button (click)="RightAnswer()">Show juiste antwoord</ion-button>
+      <ion-button (click)="refresh()">Refresh Quiz</ion-button>
+      <ion-input [(ngModel)]="score" placeholder="Hoeveel antwoorden had je juist op deze pagina quiz?"></ion-input>
+    </div>
+
+    <div *ngIf="score">
+      <ion-item *ngIf="score >= 2"><ion-label >Goed Gedaan!!</ion-label></ion-item>
+      <ion-item *ngIf="score < 2"> <ion-label>Dit is niet goed</ion-label></ion-item>
+    </div>
+ </div>
+
+  <div *ngIf="auth.isAuthenticated()" padding>
+    <ion-item>
+        <ion-input type="number" [(ngModel)]="heroId">geef hero id: </ion-input>
+        <ion-input [(ngModel)]="question">geef vraag: </ion-input>
+        <ion-input [(ngModel)]="answer">geef antwoord: </ion-input>
+        <ion-button (click)="Posting()">POST</ion-button>
+    </ion-item>
+    <div>
+      Hero id: hierin geef je de id die je in de hero lijst hebt gevonden 
+      en waar je een vraag van over weet en het antwoord
+    </div>
+  </div>
+  
+  <div style="text-align: center" *ngIf="!auth.isAuthenticated()">
+      <ion-label>Login to take the quiz, where you can add your own questions</ion-label>
+      <ion-button style="
+                  width: 50%;
+                  margin-left: 25%;
+                  margin-right: 25%" 
+                  href="tabs/home">Go To Login
+      </ion-button>
+  </div>
+</ion-content>

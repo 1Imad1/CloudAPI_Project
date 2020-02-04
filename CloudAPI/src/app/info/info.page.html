@@ -1,0 +1,57 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="goBack()"> <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon> </ion-button>
+        </ion-buttons>
+      <ion-title>Info</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content *ngIf="hero">
+    <div style="
+          background-image: url('https://thumbs.gfycat.com/RawMiserableArachnid-size_restricted.gif');    
+          background-repeat: no-repeat;
+          background-size: cover;
+          padding: 1px;">
+      <div>
+      </div>
+      
+      <div style="margin: 10px;">      
+        <img *ngIf="image" src="{{image.url}}">
+      </div>
+      <div>
+        <ion-list *ngIf="connection">
+          <ion-item *ngIf="bio" lines="none">
+            <ion-label *ngIf="bio['full-name']">Full-name: {{bio['full-name']}} </ion-label>
+            <ion-label *ngIf="bio['full-name'] == ''">Full-name: No full-name </ion-label>
+            <ion-label [title]="bio.aliases"> Aliases: {{bio.aliases}} </ion-label>
+            <ion-label>Race: {{appearance.race}}</ion-label>
+          </ion-item>
+          <ion-item *ngIf="appearance" lines="none">
+            <ion-label *ngIf="appearance.gender == 'Male'">Gender: <ion-icon ios="ios-male" md="md-male"></ion-icon> </ion-label>
+            <ion-label *ngIf="appearance.gender == 'Female'">Gender: <ion-icon ios="ios-female" md="md-female"></ion-icon> </ion-label> 
+            <ion-label>Height: {{appearance.height}}</ion-label>
+            <ion-label>Weight: {{appearance.weight}}</ion-label>
+          </ion-item>
+          <ion-item *ngIf="work" lines="none">
+            <ion-label [title]="work.occupation">Occupation: {{work.occupation}}</ion-label>
+            <ion-label>Egos: {{bio['alter-egos']}} </ion-label> 
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label>Birth Place: {{bio['place-of-birth']}} </ion-label>
+            <ion-label [title]="connection.relatives">Relative: {{connection.relatives}} </ion-label>
+          </ion-item>        
+          <ion-item lines="none">
+            <ion-label>Base: {{work.base}}   <ion-icon ios="ios-home" md="md-home"></ion-icon></ion-label>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label [title]="connection['group-affiliation']">Group-Affiliation: {{connection['group-affiliation']}}   <ion-icon ios="ios-people" md="md-people"></ion-icon> </ion-label>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label>Publisher: {{bio.publisher}} </ion-label>
+            <ion-label>First Appearance: {{bio['first-appearance']}} </ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>  
+  </ion-content>

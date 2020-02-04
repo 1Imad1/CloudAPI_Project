@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="achtergrond">
+    <ion-button style="
+                margin-top: 250px;
+                margin-left: 50%;" 
+    class="btn btn-primary btn-margin" *ngIf="!auth.isAuthenticated()"
+    (click)="auth.login()">Login</ion-button>
+    
+    <ion-button  style="
+                margin-top: 250px;
+                margin-left: 50%;" 
+    class="btn btn-primary btn-margin" *ngIf="auth.isAuthenticated()"
+    (click)="auth.logout()">Log Out</ion-button>
+</ion-content>

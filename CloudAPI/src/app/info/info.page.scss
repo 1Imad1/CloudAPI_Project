@@ -1,0 +1,22 @@
+ion-label{
+    text-align: center;
+}
+
+img{
+    border-radius: 8px;
+    display: block;
+    height: 450px;
+    width: 350px;
+    margin: 0 auto;
+}
+
+ion-label{
+   border: 1px solid gray;
+   padding: 5px;
+   border-radius: 10px;
+   border-bottom-left-radius: 25px;
+   border-bottom-right-radius: 25px;
+   display: inline-block;
+   margin: 3px;
+   /* font-family: Comic Sans MS, cursive, sans-serif; */
+}
